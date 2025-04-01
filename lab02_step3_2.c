@@ -14,15 +14,24 @@ void copy_array(double x[I][J], double previous_temp[I][J]);
 void compute_next_array(double x[I][J], double previous_temp[I][J]);
 void find_max(double x[I][J]);
 void find_min(double x[I][J]);
-void normalization(double x[I][J]);
+void compute_normalized_temp(double x[I][J], int normalized_temp[I][J]);
+void print_normalized_temp(int y[I][J]);
+
 int main(void){
     double temp[I][J];
-    int time = 2;
+    int normalized_temp[I][J];
+    int time = 1;
     int k;
     reset(temp);
     change_time(0);
     print_temp(temp);
+    printf("\n");
+    compute_normalized_temp(temp,normalized_temp);
+
     next_temp(temp);
+    compute_normalized_temp(temp,normalized_temp);
+    print_normalized_temp(normalized_temp);
+    
     getchar();
     return 0;
 }
@@ -99,16 +108,14 @@ void compute_next_array(double x[I][J], double previous_temp[I][J]){
 
 void next_temp(double x[I][J]){
     int i,j,k;
-    int time = 2;
+    int time = 1;
+    print_temp(x);
     double previous_temp[I][J];
     for (k=1; k<(time+1); k++){
         copy_array(x,previous_temp);
         compute_next_array(x, previous_temp);
         change_time(k);
         print_temp(x);
-        find_max(x);
-        find_min(x);
-
 
     }
     return;
@@ -140,4 +147,41 @@ void find_min(double x[I][J]){
     printf("min : %.2f\n", min);
 }
 
-void normalization(double x[I][J]);
+void compute_normalized_temp(double x[I][J], int normalized_temp[I][J]){
+    double max = 4.00;
+    double min = -5.00;
+    double width = 9.00;
+    double step = 0.90;
+
+    int i,j,l;
+    for(i=0; i<I; i++){
+        for (j=0; j<J; j++){
+            if (x[i][j] >= 0){
+                x[i][j] = x[i][j] +5.50;
+            }
+            else{
+                x[i][j] = x[i][j] +4.50;
+
+            }
+
+        }
+    }
+    for(i=0; i<I; i++){
+        for (j=0; j<J; j++){
+            normalized_temp[i][j] = x[i][j];
+        }
+    }
+
+
+}
+
+void print_normalized_temp(int y[I][J]){
+    int i,j;
+    for (i=0; i<10; i++){
+        for (j=0; j<20; j++){
+            printf(" %d", y[i][j]);
+        }
+        printf("\n");
+    }
+
+}
