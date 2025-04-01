@@ -31,22 +31,6 @@ int main(void){
         next_temp(temp);
 
     }
-   /* reset(temp);
-    change_time(0);
-    print_temp(temp);
-    printf("\n");
-    compute_normalized_temp(temp,normalized_temp);
-    print_normalized_temp(normalized_temp);
-    reset(temp);
-
-
-    next_temp(temp);
-    change_time(1);
-    print_temp(temp);
-    printf("\n");
-    compute_normalized_temp(temp,normalized_temp);
-    print_normalized_temp(normalized_temp);*/
-    
     getchar();
     return 0;
 }
